@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.mapper.EduCourseMapper" >
+
+    <select id="subjectPipe" resultType="com.edu.domain.dto.report.SubjectPipDto">
+        SELECT es.title as name, pip.value
+        from (
+                 select ec.subject_id, count(1) as value
+                 from edu_course ec
+                 where ec.status = 1
+                 group by ec.subject_id
+             ) as pip,
+             edu_subject es
+        where pip.subject_id = es.id
+    </select>
+
+    <select id="courseViewCount" resultType="com.edu.domain.dto.report.CourseViewDto">
+        select title, view_count from edu_course where status = 1 order by view_count desc limit 0, 10
+    </select>
+</mapper>
