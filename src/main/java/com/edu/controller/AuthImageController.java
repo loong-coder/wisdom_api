@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.edu.domain.dto.AuthImageDto;
 import com.edu.domain.response.BaseResponse;
 import com.edu.cache.CacheManager;
+import com.edu.util.AuthCodeUtil;
 import com.google.code.kaptcha.Producer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,8 +36,8 @@ public class AuthImageController {
     @GetMapping(value = "captcha")
     public BaseResponse<AuthImageDto> captcha() throws IOException {
 
-//        String authCode = AuthCodeUtil.getAuthCode();
-        String authCode = "11111";
+        String authCode = AuthCodeUtil.getAuthCode();
+//        String authCode = "11111";
 
         BufferedImage image = producer.createImage(authCode);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
