@@ -19,7 +19,7 @@ public class EduCollectController {
     private EduCollectService eduCollectService;
 
 
-    @GetMapping("${courseId}")
+    @GetMapping("/{courseId}")
     public BaseResponse<Boolean> queryCollectInfo(@PathVariable("courseId") Long courseId){
         return BaseResponse.success( eduCollectService.queryCollectInfo(courseId));
     }

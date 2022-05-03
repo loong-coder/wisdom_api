@@ -23,4 +23,7 @@ public class EduCourseQueryDto extends BasePage implements Serializable {
 
     @ApiModelProperty(value = "教师id")
     private Long teacherId;
+
+    @ApiModelProperty(value = "查询我的收藏")
+    private Boolean queryCollect;
 }

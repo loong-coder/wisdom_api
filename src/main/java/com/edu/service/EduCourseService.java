@@ -40,6 +40,9 @@ public class EduCourseService {
     private EduSubjectService eduSubjectService;
 
     @Resource
+    private EduCollectService eduCollectService;
+
+    @Resource
     private UserService userService;
 
     public PageInfo<EduCourseDto> list(EduCourseQueryDto queryDto) {
@@ -69,6 +72,15 @@ public class EduCourseService {
             queryWrapper.eq(EduCourse::getTeacherId, queryDto.getTeacherId());
         }
         queryWrapper.eq(EduCourse::getDeleted, Boolean.FALSE);
+        if (Optional.ofNullable(queryDto.getQueryCollect()).orElse(Boolean.FALSE)){
+            Long userId = UserContextUtils.getUserId();
+            List<Long> courseIds = eduCollectService.queryCollectByUserId(userId);
+            if (CollectionUtil.isEmpty(courseIds)){
+                return null;
+            }
+            queryWrapper.in(EduCourse::getId, courseIds);
+        }
+
         queryWrapper.orderByDesc(EduCourse::getCreateDate);
         if (Optional.ofNullable(queryDto.getPageNum()).orElse(0) > 0
                 && Optional.ofNullable(queryDto.getSize()).orElse(0) > 0) {
