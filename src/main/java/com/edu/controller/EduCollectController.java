@@ -20,6 +20,7 @@ public class EduCollectController {
 
 
     @GetMapping("/{courseId}")
+    @ApiOperation("查询是否收藏了该课程")
     public BaseResponse<Boolean> queryCollectInfo(@PathVariable("courseId") Long courseId){
         return BaseResponse.success( eduCollectService.queryCollectInfo(courseId));
     }
