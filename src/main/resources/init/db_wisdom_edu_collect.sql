@@ -1,16 +1,16 @@
 -- auto-generated definition
-create table edu_subject
+create table edu_collect
 (
     id             bigint(19) auto_increment
         primary key,
-    parent_id      bigint(19)  null,
-    title          varchar(64) not null,
-    sort           smallint    null,
-    deleted        tinyint(1)  null,
-    create_user_id bigint(19)  null,
-    update_user_id bigint(19)  null,
-    create_date    datetime    not null,
-    update_date    datetime    null
+    course_id      bigint(19) null,
+    user_id        bigint(19) null,
+    is_collect     bit        not null,
+    deleted        bit        not null,
+    create_user_id bigint(19) null,
+    update_user_id bigint(19) null,
+    create_date    datetime   not null,
+    update_date    datetime   null
 )
     charset = utf8;
 
