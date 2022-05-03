@@ -1,7 +1,7 @@
 package com.edu.error;
 
 
-import jdk.jfr.internal.LogLevel;
+import org.springframework.boot.logging.LogLevel;
 
 public class BusinessException extends RuntimeException {
 
